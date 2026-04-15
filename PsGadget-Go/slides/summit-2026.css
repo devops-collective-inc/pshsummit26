@@ -1,0 +1,878 @@
+/*
+@theme summit-2026
+@auto-scaling true
+*/
+
+/* Import the marp base */
+@import 'base';
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/*
+  Marp / Marpit theme inspired by the user's Summit 2026 PPTX template.
+  Usage in Markdown front‑matter:
+
+  ---
+  marp: true
+  theme: summit-2026
+  paginate: true
+  ---
+
+  To make a title slide:
+  <!-- _class: title -->
+  # PowerShell + Devops <br/>Global Summit
+
+  ## Building Better Scripts for the Future
+
+  <p class="name">Your Name</p>
+  <p class="handle">@your.handle</p>
+
+*/
+
+/* ---------- CSS Custom Properties (easy theming) ---------- */
+:root {
+  /* Slide size (16:9) */
+  width: 1280px;
+  height: 720px;
+  font-size: 32px;
+  /* Base type scale for rem units */
+  padding: 70px;
+  /* Large margin per Summit style */
+
+  /* PowerShell Summit Official Colors */
+  --primary-color: #00aeef;
+  /* PowerShell Summit primary cyan */
+  --secondary-color: #0082c6;
+  /* PowerShell Summit secondary blue */
+  --tertiary-color: #2b2d78;
+  /* PowerShell Summit tertiary navy */
+  --quaternary-color: #92278f;
+  /* PowerShell Summit quaternary purple */
+
+  --gradient-angle: 41deg;
+  --hero-gradient: linear-gradient(var(--gradient-angle), rgba(0, 174, 239, 0.9), rgba(0, 130, 198, 0.9), rgba(43, 45, 120, 0.9), rgba(146, 39, 143, 0.9));
+
+  /* Derived colors for slides */
+  --bg: #d9d9d9;
+  /* light background */
+  --fg: #333333;
+  /* dark text on light background */
+  --muted: #64748b;
+  /* muted text */
+  --accent: var(--primary-color);
+  /* use PS Summit primary as accent */
+  --accent-2: var(--quaternary-color);
+  /* use PS Summit purple as secondary accent */
+  --surface: #ffffff;
+  /* light card surface */
+  --code-bg: var(--hero-gradient);
+  /* light code block background */
+  --border: #cbd5e1;
+  /* light border */
+
+  /* Typography */
+  --font-title: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+  --font-sub: "Play", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-serif: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Logo/Sponsor slot sizes */
+  --header-h: 56px;
+  --footer-h: 48px;
+
+  /* Semantic spacing scale */
+  --spacing-2xs: 0.12rem;
+  --spacing-xs: 0.2rem;
+  --spacing-sm: 0.25rem;
+  --spacing-md: 0.3rem;
+  --spacing-lg: 0.4rem;
+  --spacing-xl: 0.45rem;
+  --spacing-2xl: 0.5rem;
+  --spacing-3xl: 0.6rem;
+  --spacing-4xl: 0.8rem;
+  --spacing-5xl: 1.2rem;
+  --spacing-6xl: 2rem;
+
+  /* Additional semantic spacing for specific use cases */
+  --spacing-table-cell: 0.35rem;
+}
+
+/* ---------- Base ---------- */
+section {
+  background-color: var(--bg);
+  color: var(--fg);
+  line-height: 1.25;
+}
+
+/* Fallback if background image fails to load on title slide */
+@supports not (background: var(--bg) url('Background.png') no-repeat center/cover) {
+  section.title {
+    background: var(--bg);
+  }
+}
+
+/* More specific box-sizing to improve performance and include pseudo-elements */
+section,
+section *,
+section *::before,
+section *::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: bold;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 0 var(--spacing-3xl);
+}
+
+h2 {
+  font-size: 1.4rem;
+  margin: var(--spacing-3xl) 0 var(--spacing-lg);
+}
+
+h3 {
+  font-size: 1.15rem;
+  margin: var(--spacing-3xl) 0 var(--spacing-lg);
+}
+
+p,
+li,
+table,
+pre,
+code {
+  font-family: var(--font-sans);
+}
+
+p {
+  font-size: .9rem;
+  color: var(--fg);
+  margin: var(--spacing-xl) 0;
+}
+
+small,
+.muted {
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+strong {
+  color: var(--accent-2);
+}
+
+em {
+  color: var(--accent-2);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 2px solid color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+a:hover {
+  filter: brightness(1.2);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+ul,
+ol {
+  margin: var(--spacing-lg) 0 var(--spacing-lg) var(--spacing-5xl);
+}
+
+li {
+  margin: var(--spacing-xs) 0;
+}
+
+blockquote {
+  border-left: 6px solid var(--accent);
+  padding: var(--spacing-sm) var(--spacing-3xl);
+  margin: var(--spacing-3xl) 0;
+  color: var(--tertiary-color);
+  background: color-mix(in srgb, var(--primary-color) 10%, white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 174, 239, 0.1);
+}
+
+/* Enhanced list styling */
+ul li::marker {
+  color: var(--secondary-color);
+}
+
+ol li::marker {
+  color: var(--quaternary-color);
+  font-weight: bold;
+}
+
+/* Special list variations */
+.primary-list li::marker {
+  color: var(--primary-color);
+}
+
+.secondary-list li::marker {
+  color: var(--secondary-color);
+}
+
+.tertiary-list li::marker {
+  color: var(--tertiary-color);
+}
+
+.quaternary-list li::marker {
+  color: var(--quaternary-color);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: var(--spacing-4xl) 0;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+/* Tables */
+.table,
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.62rem;
+}
+
+table th,
+table td {
+  padding: var(--spacing-table-cell) var(--spacing-xl);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+table thead th {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border-bottom-color: color-mix(in srgb, var(--fg) 20%, var(--border));
+}
+
+/* Code — inline */
+:not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  background: var(--tertiary-color);
+  color: #ffffff;
+  padding: var(--spacing-2xs) var(--spacing-md);
+  border-radius: 8px;
+  border: 1px solid var(--tertiary-color);
+}
+
+/* Code — blocks */
+pre code {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  display: block;
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+  border-radius: 12px;
+  background: var(--tertiary-color);
+  color: #e0e0e0;
+  border: 2px solid var(--tertiary-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Syntax highlighting — dark-friendly overrides */
+pre .hljs-keyword,
+pre .hljs-selector-tag,
+pre .hljs-built_in,
+pre .hljs-literal {
+  color: #569cd6;
+}
+
+pre .hljs-string,
+pre .hljs-template-variable {
+  color: #ce9178;
+}
+
+pre .hljs-title,
+pre .hljs-type,
+pre .hljs-tag {
+  color: #4ec9b0;
+}
+
+pre .hljs-name,
+pre .hljs-attribute {
+  color: #9cdcfe;
+}
+
+pre .hljs-variable,
+pre .hljs-params {
+  color: #9cdcfe;
+}
+
+pre .hljs-comment,
+pre .hljs-doctag {
+  color: #6a9955;
+  font-style: italic;
+}
+
+pre .hljs-number {
+  color: #b5cea8;
+}
+
+pre .hljs-symbol,
+pre .hljs-bullet {
+  color: #d4d4d4;
+}
+
+pre .hljs-meta {
+  color: #dcdcaa;
+}
+
+/* ---------- Header & Footer (use Marp header/footer directives) ---------- */
+header,
+footer {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header {
+  top: 32px;
+  height: var(--header-h);
+  color: var(--muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+footer {
+  bottom: 28px;
+  height: var(--footer-h);
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+/* Optional slot for right‑aligned sponsor/logo in header */
+header img,
+footer img {
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ---------- Pagination (turn on with paginate: true) ---------- */
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sub);
+  font-size: 1.8rem;
+  margin: var(--spacing-xl);
+  padding: var(--spacing-xl);
+}
+
+/* ---------- Layout helpers ---------- */
+
+/* Two-column split layout */
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  align-items: start;
+  margin-top: 0.4rem;
+}
+
+/* Asymmetric variants */
+.columns-40-60 {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 1.2rem;
+  align-items: start;
+  margin-top: 0.4rem;
+}
+
+.columns-60-40 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1.2rem;
+  align-items: start;
+  margin-top: 0.4rem;
+}
+
+.columns-25-75 {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1.2rem;
+  align-items: start;
+  margin-top: 0.4rem;
+}
+
+/* Divider between columns */
+.columns.divided > div:first-child,
+.columns-40-60.divided > div:first-child,
+.columns-60-40.divided > div:first-child {
+  border-right: 2px solid var(--border);
+  padding-right: 1.2rem;
+}
+
+/* Column label — styled header above each column */
+.col-label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: white;
+  background: var(--secondary-color);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.3rem;
+}
+
+.col-label.accent {
+  background: var(--primary-color);
+}
+
+.col-label.muted {
+  background: var(--muted);
+}
+
+/* Title slide — big title, name/handle, sponsor image slot */
+/*
+  Background layers (back to front):
+    1. Background.png  — full-bleed decorative background
+    2. cc-by-sa.png    — CC BY SA badge, bottom-left corner
+    3. powershell-summit-logo.png — summit logo, top-right corner
+*/
+section.background {
+  background-image:
+    url('powershell-summit-logo.png'),
+    url('cc-by-sa.png'),
+    url('Background.png');
+  background-position:
+    top 20px right 20px,
+    bottom 20px left 20px,
+    center;
+  background-size:
+    auto 56px,
+    auto 40px,
+    cover;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+/* Strips the full background but keeps the corner logos */
+section {
+  background-image:
+    url('powershell-summit-logo.png'),
+    url('cc-by-sa.png');
+  background-position:
+    top 20px right 20px,
+    bottom 20px left 20px;
+  background-size:
+    auto 56px,
+    auto 40px;
+  background-repeat: no-repeat, no-repeat;
+}
+
+section.centered {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Sponsors slide — sponsor logos as a background layer behind the corner logos */
+section.sponsors {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  background-image:
+    url('powershell-summit-logo.png'),
+    url('cc-by-sa.png'),
+    url('PSHSummit26-Sponsors.png');
+  background-position:
+    top 20px right 20px,
+    bottom 20px left 20px,
+    center 75%;
+  background-size:
+    auto 56px,
+    auto 40px,
+    90% auto;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+section.title {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  background-image: url('Background.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+section.title h1 {
+  font-size: 2rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+section.title h2 {
+  font-size: 1.5rem;
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-top: 0;
+  background: linear-gradient(135deg, var(--tertiary-color), var(--quaternary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+
+section.title .name {
+  min-width: 15rem;
+  max-width: 25rem;
+  font-size: 0.6rem;
+  margin: var(--spacing-xs) 0;
+  font-weight: 600;
+  font-family: var(--font-sub);
+  border: 1px solid var(--tertiary-color);
+  padding: var(--spacing-lg) var(--spacing-4xl);
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0, 174, 239, 0.3);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+section.title .handle {
+  min-width: 15rem;
+  max-width: 25rem;
+  font-size: 0.6rem;
+  margin: var(--spacing-xs) 0;
+  background: linear-gradient(var(--gradient-angle), var(--tertiary-color), var(--quaternary-color));
+  font-family: var(--font-sub);
+  color: white;
+  padding: var(--spacing-lg) var(--spacing-4xl);
+  border-radius: 6px;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(146, 39, 143, 0.3);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+section.title p.meta {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: var(--spacing-xs);
+}
+
+/* If you put an image on the title slide, anchor it in the corner */
+section.title>img[alt~="sponsor"],
+section.title>img.sponsor {
+  position: absolute;
+  right: 72px;
+  top: 32px;
+  height: 56px;
+  width: auto;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 0.95;
+}
+
+
+/* Callout / card */
+.callout {
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  border-radius: 16px;
+  padding: var(--spacing-xs) var(--spacing-4xl);
+  box-shadow: 0 4px 12px rgba(0, 174, 239, 0.15);
+  color: var(--fg);
+}
+
+.callout h3 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  color: var(--accent);
+}
+
+/* Callout variations with different brand colors */
+.callout.primary {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 174, 239, 0.15);
+}
+
+.callout.primary h3 {
+  color: var(--primary-color);
+}
+
+.callout.secondary {
+  border-color: var(--secondary-color);
+  box-shadow: 0 4px 12px rgba(0, 130, 198, 0.15);
+}
+
+.callout.secondary h3 {
+  color: var(--secondary-color);
+}
+
+.callout.tertiary {
+  border-color: var(--tertiary-color);
+  box-shadow: 0 4px 12px rgba(43, 45, 120, 0.15);
+}
+
+.callout.tertiary h3 {
+  color: var(--tertiary-color);
+}
+
+.callout.quaternary {
+  border-color: var(--quaternary-color);
+  box-shadow: 0 4px 12px rgba(146, 39, 143, 0.15);
+}
+
+.callout.quaternary h3 {
+  color: var(--quaternary-color);
+}
+
+/* Warning/Info callout with gradient */
+.callout.gradient {
+  border: 2px solid var(--primary-color);
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--primary-color) 5%, white),
+      color-mix(in srgb, var(--secondary-color) 5%, white));
+}
+
+.callout.gradient h3 {
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Accent heading underline */
+.heading-underline h2 {
+  position: relative;
+  padding-bottom: var(--spacing-sm);
+}
+
+.heading-underline h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 70%;
+  bottom: 0;
+  height: 6px;
+  border-radius: 6px;
+  background: var(--accent);
+}
+
+/* Lists with check‑style bullets */
+.checklist li::marker {
+  content: "✔  ";
+  color: var(--accent);
+}
+
+/* Image caption */
+figcaption {
+  font-size: 0.6rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: var(--spacing-sm);
+}
+
+/* Title slide name/handle variations */
+section.title .name.compact,
+section.title .handle.compact {
+  min-width: 12rem;
+  max-width: 20rem;
+  font-size: 0.55rem;
+  padding: var(--spacing-md) var(--spacing-3xl);
+}
+
+section.title .name.wide,
+section.title .handle.wide {
+  min-width: 18rem;
+  max-width: 30rem;
+  font-size: 0.55rem;
+  padding: var(--spacing-2xl) 1rem;
+}
+
+section.title .name.auto-width,
+section.title .handle.auto-width {
+  width: auto;
+  min-width: 10rem;
+  max-width: 35rem;
+  padding: var(--spacing-lg) var(--spacing-5xl);
+}
+
+/* Enhanced tables with brand colors */
+table thead th {
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: white;
+  background: var(--secondary-color);
+  border-bottom-color: var(--tertiary-color);
+}
+
+table tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--primary-color) 8%, transparent);
+}
+
+table tbody tr:hover {
+  background: color-mix(in srgb, var(--primary-color) 15%, transparent);
+}
+
+/* Utility classes */
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+/* Brand color utilities */
+.primary {
+  color: var(--primary-color);
+}
+
+.secondary {
+  color: var(--secondary-color);
+}
+
+.tertiary {
+  color: var(--tertiary-color);
+}
+
+.quaternary {
+  color: var(--quaternary-color);
+}
+
+.primary-bg {
+  background: var(--primary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-2xl);
+  border-radius: 4px;
+}
+
+.secondary-bg {
+  background: var(--secondary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-2xl);
+  border-radius: 4px;
+}
+
+.tertiary-bg {
+  background: var(--tertiary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-2xl);
+  border-radius: 4px;
+}
+
+.quaternary-bg {
+  background: var(--quaternary-color);
+  color: white;
+  padding: var(--spacing-xs) var(--spacing-2xl);
+  border-radius: 4px;
+}
+
+/* Gradient text effects */
+.gradient-text {
+  background: var(--hero-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: bold;
+}
+
+.small {
+  font-size: 0.65rem;
+}
+
+.large {
+  font-size: 0.9rem;
+}
+
+.xlarge {
+  font-size: 1.2rem;
+}
+
+/* ---------- Big-statement section-break slides ---------- */
+section.big-statement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-image: none;
+  background-color: var(--tertiary-color);
+}
+
+section.big-statement h1 {
+  background: var(--bg);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+section.big-statement h2 {
+  background: var(--quaternary-color);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+section.big-statement p {
+  color: var(--muted);
+}
+
+section.big-statement em {
+  color: var(--accent);
+}
+
+/* ---------- Print tweaks ---------- */
+@page {
+  size: 1280px 720px;
+  margin: 0;
+}
