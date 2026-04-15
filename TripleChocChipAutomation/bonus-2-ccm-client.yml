@@ -1,0 +1,63 @@
+---
+- name: 'Install and configure Chocolatey Agent'
+  hosts: 'choco_licensed'
+  
+  tasks:
+    - name: Verify Mandatory Vars
+      assert:
+        that:
+          - ccm_service_url is defined
+          - ccm_service_url | length > 0
+
+          - ccm_client_salt is defined
+          - ccm_client_salt | length > 0
+
+          - ccm_server_salt is defined
+          - ccm_server_salt | length > 0
+        quiet: true
+
+    - name: "Ensure 'chocolatey-agent' package is installed"
+      win_chocolatey:
+        name: 'chocolatey-agent'
+        version: '{{ agent_version | default(omit) }}'
+        state: '{{ "latest" if agent_version is undefined or agent_version == omit else "downgrade" }}'
+
+    - name: 'Set choco CentralManagementServiceUrl'
+      win_chocolatey_config:
+        name: 'CentralManagementServiceUrl'
+        state: present
+        value: '{{ ccm_service_url }}'
+      notify: Restart Chocolatey Agent
+
+    - name: 'Enable choco feature useChocolateyCentralManagement'
+      win_chocolatey_feature:
+        name: useChocolateyCentralManagement
+        state: enabled
+      notify: Restart Chocolatey Agent
+
+    - name: 'Enable choco feature useChocolateyCentralManagementDeployments'
+      win_chocolatey_feature:
+        name: useChocolateyCentralManagementDeployments
+        state: enabled
+      notify: Restart Chocolatey Agent
+
+    - name: 'Set CCM Client Salt'
+      win_chocolatey_config:
+        name: 'centralManagementClientCommunicationSaltAdditivePassword'
+        state: present
+        value: '{{ ccm_client_salt }}'
+      notify: Restart Chocolatey Agent
+
+    - name: 'Set CCM Service Salt'
+      win_chocolatey_config:
+        name: 'centralManagementServiceCommunicationSaltAdditivePassword'
+        state: present
+        value: '{{ ccm_server_salt }}'
+      notify: Restart Chocolatey Agent
+
+  handlers:
+    - name: Restart Chocolatey Agent
+      ansible.windows.win_service:
+        name: 'Chocolatey Agent'
+        state: restarted
+...

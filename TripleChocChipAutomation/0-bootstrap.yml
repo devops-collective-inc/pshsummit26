@@ -1,0 +1,40 @@
+---
+- name: 'Demo Bootstrapping'
+  hosts: 'windows_servers'
+  
+  tasks:
+    - name: 'Ensure Chocolatey itself is installed, without relying on the Wi-Fi'
+      win_chocolatey:
+        name: 'chocolatey'
+        bootstrap_script: 'http://sion.holonet.nz:8624/endpoints/bootstrap/content/chocolatey-install.ps1'
+      environment:
+        chocolateyDownloadUrl: 'http://sion.holonet.nz:8624/endpoints/bootstrap/content/chocolatey.2.7.1.nupkg'
+
+    - name: 'Add internal repo'
+      win_chocolatey_source:
+        name: 'internal-chocolatey'
+        source: 'http://sion.holonet.nz:8624/nuget/internal-chocolatey'
+        priority: 1
+        state: 'present'
+
+    - name: 'Disable default community repo'
+      win_chocolatey_source:
+        name: 'chocolatey'
+        state: 'disabled'
+
+    - name: 'Ensure latest Chocolatey Business License package is installed'
+      win_chocolatey:
+        name: 'chocolatey-license'
+        state: 'present'
+
+    - name: 'Ensure Chocolatey Licensed Extension is installed'
+      win_chocolatey:
+        name: 'chocolatey.extension'
+        state: 'present'
+        source: 'internal-chocolatey'
+
+    - name: 'Disable licensed packages repo'
+      win_chocolatey_source:
+        name: 'chocolatey.licensed'
+        state: 'disabled'
+...

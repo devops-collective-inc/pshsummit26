@@ -1,0 +1,26 @@
+---
+- name: 'Chocolatey Configuration and Features Demo'
+  hosts: 'windows_servers'
+  
+  tasks:
+    - name: 'Enable list of Chocolatey features'
+      win_chocolatey_feature:
+        name: "{{ item }}"
+        state: 'enabled'
+      loop:
+        - 'allowGlobalConfirmation'
+        - 'useRememberedArgumentsForUpgrades'
+        - 'exitOnRebootDetected'
+
+    - name: 'Increase execution timeout for large packages'
+      win_chocolatey_config:
+        name: 'commandExecutionTimeoutSeconds'
+        value: '3600'
+        state: 'present'
+
+    - name: 'Set Chocolatey cache location to a custom path'
+      win_chocolatey_config:
+        name: 'cacheLocation'
+        value: 'C:\Apps\ChocoCache'
+        state: 'present'
+...

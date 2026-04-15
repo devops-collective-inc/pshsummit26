@@ -1,0 +1,24 @@
+---
+- name: 'Ensure .NET Framework 4.8 requirement is satisfied for Chocolatey CLI v2.0.0+'
+  hosts: 'legacy_windows_servers'
+  
+  tasks:
+    - name: 'Install Chocolatey CLI v1.4.5'
+      win_chocolatey:
+        name: 'chocolatey'
+        state: 'present'
+        version: '1.4.5'
+
+    - name: 'Install Microsoft .NET Framework 4.8'
+      win_chocolatey:
+        name: 'netfx-4.8'
+        state: 'present'
+
+    - name: 'Reboot the host to complete .NET Framework 4.8 install'
+      ansible.windows.win_reboot:
+
+    - name: 'Install Chocolatey CLI v2.0.0+ when .NET Framework 4.8 dependency is met'
+      win_chocolatey:
+        name: 'chocolatey'
+        state: latest
+...

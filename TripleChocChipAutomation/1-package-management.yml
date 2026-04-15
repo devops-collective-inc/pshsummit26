@@ -1,0 +1,34 @@
+---
+- name: 'Chocolatey Package Management Demo'
+  hosts: 'windows_servers'
+  
+  tasks:
+    - name: 'Ensure "git" package is installed'
+      win_chocolatey:
+        name: 'git'
+        state: 'present'
+
+    - name: 'Ensure latest version of "7zip" package is installed'
+      win_chocolatey:
+        name: '7zip'
+        state: 'latest'
+
+    - name: 'Ensure specific version of "nodejs" package is installed... and pinned'
+      win_chocolatey:
+        name: 'nodejs'
+        version: '18.16.0'
+        state: 'downgrade'
+        pinned: yes
+
+    - name: 'Ensure "notepadplusplus" package is installed, with installer argument'
+      win_chocolatey:
+        name: 'notepadplusplus'
+        state: 'present'
+        install_args: '/D=C:\Apps\notepad++'
+
+    - name: 'Ensure "vscode" package is installed, with package parameters'
+      win_chocolatey:
+        name: 'vscode'
+        state: 'present'
+        package_params: '/NoDesktopIcon /NoContextMenuFiles /NoContextMenuFolders'
+...
