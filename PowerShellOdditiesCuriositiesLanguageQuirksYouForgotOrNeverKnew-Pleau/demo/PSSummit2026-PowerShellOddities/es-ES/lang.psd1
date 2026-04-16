@@ -1,0 +1,4 @@
+@{
+    Greeting = 'Hola'
+    Farewell = 'Adiós'
+}

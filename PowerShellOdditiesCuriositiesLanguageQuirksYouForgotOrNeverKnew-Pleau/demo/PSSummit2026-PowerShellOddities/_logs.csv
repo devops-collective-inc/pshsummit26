@@ -1,0 +1,11 @@
+Timestamp,Service,Status,Message
+2026-04-01T08:15:23Z,Auth,OK,User login successful
+2026-04-01T08:17:02Z,API,Error,Timeout while calling external service
+2026-04-01T08:18:45Z,DB,Warning,Query execution slower than expected
+2026-04-01T08:20:11Z,API,Error,Failed to connect to database
+2026-04-01T08:22:09Z,Auth,OK,Token refreshed
+2026-04-01T08:25:33Z,Worker,Error,Unhandled exception in job processor
+2026-04-01T08:27:50Z,API,OK,Request processed successfully
+2026-04-01T08:30:14Z,DB,Error,Deadlock detected
+2026-04-01T08:32:01Z,Auth,Warning,Multiple failed login attempts
+2026-04-01T08:35:42Z,Worker,OK,Background job completed
