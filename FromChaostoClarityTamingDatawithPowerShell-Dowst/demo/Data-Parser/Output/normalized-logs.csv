@@ -1,0 +1,7 @@
+"Timestamp","Host","Severity","Message","LogType","RuleName","SourceFile"
+"2026-04-14T08:15:00Z","web01","Error","Disk space below threshold on C:","Syslog","SyslogCsvV1","syslog_v1_sample.csv"
+"2026-04-14T08:17:12Z","app01","Warning","Service restart detected for Spooler","Syslog","SyslogCsvV1","syslog_v1_sample.csv"
+"2026-04-14T08:18:44Z","db01","Critical","Database connection failure detected","Syslog","SyslogCsvV1","syslog_v1_sample.csv"
+"2026-04-14T09:01:05Z","proxy01","Informational","Configuration sync completed","Syslog","SyslogCsvV2","syslog_v2_sample.csv"
+"2026-04-14T09:02:11Z","proxy02","Error","TLS certificate validation failed","Syslog","SyslogCsvV2","syslog_v2_sample.csv"
+"2026-04-14T09:03:29Z","proxy03","Warning","High memory usage detected","Syslog","SyslogCsvV2","syslog_v2_sample.csv"

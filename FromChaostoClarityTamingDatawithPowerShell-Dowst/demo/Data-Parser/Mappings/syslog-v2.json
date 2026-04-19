@@ -1,0 +1,16 @@
+{
+  "Delimiter": ",",
+  "HasHeader": true,
+  "FieldMap": {
+    "Timestamp": "event_time",
+    "Host": "device_name",
+    "Severity": "severity_code",
+    "Message": "message_text"
+  },
+  "ValueTransforms": {
+    "Severity": {
+      "Type": "Map",
+      "MapFile": "severity-map.json"
+    }
+  }
+}

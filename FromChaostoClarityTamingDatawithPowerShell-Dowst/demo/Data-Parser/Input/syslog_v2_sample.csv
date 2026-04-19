@@ -1,0 +1,4 @@
+event_time,device_name,severity_code,message_text
+2026-04-14T09:01:05Z,proxy01,4,Configuration sync completed
+2026-04-14T09:02:11Z,proxy02,2,TLS certificate validation failed
+2026-04-14T09:03:29Z,proxy03,3,High memory usage detected
