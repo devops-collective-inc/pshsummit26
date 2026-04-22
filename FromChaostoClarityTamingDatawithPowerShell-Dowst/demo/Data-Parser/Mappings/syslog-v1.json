@@ -1,0 +1,16 @@
+{
+  "Delimiter": ",",
+  "HasHeader": true,
+  "FieldMap": {
+    "Timestamp": "time",
+    "Host": "host",
+    "Severity": "level",
+    "Message": "msg"
+  },
+  "ValueTransforms": {
+    "Severity": {
+      "Type": "Map",
+      "MapFile": "severity-map.json"
+    }
+  }
+}

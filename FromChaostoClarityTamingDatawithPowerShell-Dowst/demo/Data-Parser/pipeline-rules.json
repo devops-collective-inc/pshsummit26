@@ -1,0 +1,24 @@
+{
+  "Rules": [
+    {
+      "Name": "SyslogCsvV1",
+      "Match": {
+        "Extension": ".csv",
+        "FileNamePattern": "syslog_v1"
+      },
+      "Parser": "DelimitedText",
+      "MappingFile": "Mappings/syslog-v1.json",
+      "LogType": "Syslog"
+    },
+    {
+      "Name": "SyslogCsvV2",
+      "Match": {
+        "Extension": ".csv",
+        "FileNamePattern": "syslog_v2"
+      },
+      "Parser": "DelimitedText",
+      "MappingFile": "Mappings/syslog-v2.json",
+      "LogType": "Syslog"
+    }
+  ]
+}

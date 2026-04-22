@@ -1,0 +1,66 @@
+<Servers>
+  <Server>
+    <ServerName>SQL-PROD-01</ServerName>
+    <OperatingSystem>Windows Server 2022</OperatingSystem>
+    <Domain>corp.contoso.com</Domain>
+    <SerialNumber>VMW-4221-8847</SerialNumber>
+    <IsVirtual>True</IsVirtual>
+    <LastBootTime>3/1/2026 4:12:33 AM</LastBootTime>
+    <LastPatched>3/15/2026 10:30:00 PM</LastPatched>
+    <PatchWindow>Sunday 02:00-04:00</PatchWindow>
+    <Tags>
+      <Tag>SQL</Tag>
+      <Tag>Critical</Tag>
+      <Tag>Finance</Tag>
+      <Tag>Tier1</Tag>
+    </Tags>
+    <NetworkAdapters>
+      <NetworkAdapter>
+        <Name>Ethernet0</Name>
+        <MacAddress>00-50-56-A1-B2-C3</MacAddress>
+        <IPAddress>10.42.18.25</IPAddress>
+        <VLAN>120</VLAN>
+        <DhcpEnabled>False</DhcpEnabled>
+      </NetworkAdapter>
+      <NetworkAdapter>
+        <Name>Ethernet1</Name>
+        <MacAddress>00-50-56-A1-B2-C4</MacAddress>
+        <IPAddress>192.168.50.10</IPAddress>
+        <VLAN>220</VLAN>
+        <DhcpEnabled>False</DhcpEnabled>
+      </NetworkAdapter>
+    </NetworkAdapters>
+  </Server>
+  <Server>
+    <ServerName>APP-PROD-01</ServerName>
+    <OperatingSystem>Windows Server 2022</OperatingSystem>
+    <Domain>corp.contoso.com</Domain>
+    <SerialNumber>VMW-4221-8848</SerialNumber>
+    <IsVirtual>True</IsVirtual>
+    <LastBootTime>3/1/2026 4:12:33 AM</LastBootTime>
+    <LastPatched>3/15/2026 10:30:00 PM</LastPatched>
+    <PatchWindow>Sunday 02:00-04:00</PatchWindow>
+    <Tags>
+      <Tag>App</Tag>
+      <Tag>Critical</Tag>
+      <Tag>Finance</Tag>
+      <Tag>Tier1</Tag>
+    </Tags>
+    <NetworkAdapters>
+      <NetworkAdapter>
+        <Name>Ethernet0</Name>
+        <MacAddress>00-50-56-A1-B2-C5</MacAddress>
+        <IPAddress>10.42.18.17</IPAddress>
+        <VLAN>120</VLAN>
+        <DhcpEnabled>False</DhcpEnabled>
+      </NetworkAdapter>
+      <NetworkAdapter>
+        <Name>Ethernet1</Name>
+        <MacAddress>00-50-56-A1-B2-C6</MacAddress>
+        <IPAddress>192.168.50.22</IPAddress>
+        <VLAN>220</VLAN>
+        <DhcpEnabled>False</DhcpEnabled>
+      </NetworkAdapter>
+    </NetworkAdapters>
+  </Server>
+</Servers>

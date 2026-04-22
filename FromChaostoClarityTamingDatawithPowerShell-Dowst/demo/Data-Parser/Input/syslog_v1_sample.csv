@@ -1,0 +1,4 @@
+time,host,level,msg
+2026-04-14T08:15:00Z,web01,2,Disk space below threshold on C:
+2026-04-14T08:17:12Z,app01,3,Service restart detected for Spooler
+2026-04-14T08:18:44Z,db01,1,Database connection failure detected

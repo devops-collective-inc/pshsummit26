@@ -1,0 +1,116 @@
+<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+  <Obj RefId="0">
+    <TN RefId="0">
+      <T>ServerRecord</T>
+      <T>System.Object</T>
+    </TN>
+    <ToString>ServerRecord</ToString>
+    <Props>
+      <S N="ServerName">SQL-PROD-01</S>
+      <S N="OperatingSystem">Windows Server 2022</S>
+      <S N="Domain">corp.contoso.com</S>
+      <S N="SerialNumber">VMW-4221-8847</S>
+      <B N="IsVirtual">true</B>
+      <Obj N="Tags" RefId="1">
+        <TN RefId="1">
+          <T>System.String[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <S>SQL</S>
+          <S>Critical</S>
+          <S>Finance</S>
+          <S>Tier1</S>
+        </LST>
+      </Obj>
+      <Obj N="NetworkAdapters" RefId="2">
+        <TN RefId="2">
+          <T>NetworkAdapter[]</T>
+          <T>System.Array</T>
+          <T>System.Object</T>
+        </TN>
+        <LST>
+          <Obj RefId="3">
+            <TN RefId="3">
+              <T>NetworkAdapter</T>
+              <T>System.Object</T>
+            </TN>
+            <ToString>NetworkAdapter</ToString>
+            <Props>
+              <S N="Name">Ethernet0</S>
+              <S N="MacAddress">00-50-56-A1-B2-C3</S>
+              <S N="IPAddress">10.42.18.25</S>
+              <I32 N="VLAN">120</I32>
+              <B N="DhcpEnabled">false</B>
+            </Props>
+          </Obj>
+          <Obj RefId="4">
+            <TNRef RefId="3" />
+            <ToString>NetworkAdapter</ToString>
+            <Props>
+              <S N="Name">Ethernet1</S>
+              <S N="MacAddress">00-50-56-A1-B2-C4</S>
+              <S N="IPAddress">192.168.50.10</S>
+              <I32 N="VLAN">220</I32>
+              <B N="DhcpEnabled">false</B>
+            </Props>
+          </Obj>
+        </LST>
+      </Obj>
+      <DT N="LastBootTime">2026-03-01T04:12:33</DT>
+      <DT N="LastPatched">2026-03-15T22:30:00</DT>
+      <S N="PatchWindow">Sunday 02:00-04:00</S>
+    </Props>
+  </Obj>
+  <Obj RefId="5">
+    <TNRef RefId="0" />
+    <ToString>ServerRecord</ToString>
+    <Props>
+      <S N="ServerName">APP-PROD-01</S>
+      <S N="OperatingSystem">Windows Server 2022</S>
+      <S N="Domain">corp.contoso.com</S>
+      <S N="SerialNumber">VMW-4221-8848</S>
+      <B N="IsVirtual">true</B>
+      <Obj N="Tags" RefId="6">
+        <TNRef RefId="1" />
+        <LST>
+          <S>App</S>
+          <S>Critical</S>
+          <S>Finance</S>
+          <S>Tier1</S>
+        </LST>
+      </Obj>
+      <Obj N="NetworkAdapters" RefId="7">
+        <TNRef RefId="2" />
+        <LST>
+          <Obj RefId="8">
+            <TNRef RefId="3" />
+            <ToString>NetworkAdapter</ToString>
+            <Props>
+              <S N="Name">Ethernet0</S>
+              <S N="MacAddress">00-50-56-A1-B2-C5</S>
+              <S N="IPAddress">10.42.18.17</S>
+              <I32 N="VLAN">120</I32>
+              <B N="DhcpEnabled">false</B>
+            </Props>
+          </Obj>
+          <Obj RefId="9">
+            <TNRef RefId="3" />
+            <ToString>NetworkAdapter</ToString>
+            <Props>
+              <S N="Name">Ethernet1</S>
+              <S N="MacAddress">00-50-56-A1-B2-C6</S>
+              <S N="IPAddress">192.168.50.22</S>
+              <I32 N="VLAN">220</I32>
+              <B N="DhcpEnabled">false</B>
+            </Props>
+          </Obj>
+        </LST>
+      </Obj>
+      <DT N="LastBootTime">2026-03-01T04:12:33</DT>
+      <DT N="LastPatched">2026-03-15T22:30:00</DT>
+      <S N="PatchWindow">Sunday 02:00-04:00</S>
+    </Props>
+  </Obj>
+</Objs>

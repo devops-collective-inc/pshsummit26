@@ -1,0 +1,66 @@
+[
+  {
+    "ServerName": "SQL-PROD-01",
+    "OperatingSystem": "Windows Server 2022",
+    "Domain": "corp.contoso.com",
+    "SerialNumber": "VMW-4221-8847",
+    "IsVirtual": true,
+    "Tags": [
+      "SQL",
+      "Critical",
+      "Finance",
+      "Tier1"
+    ],
+    "NetworkAdapters": [
+      {
+        "Name": "Ethernet0",
+        "MacAddress": "00-50-56-A1-B2-C3",
+        "IPAddress": "10.42.18.25",
+        "VLAN": 120,
+        "DhcpEnabled": false
+      },
+      {
+        "Name": "Ethernet1",
+        "MacAddress": "00-50-56-A1-B2-C4",
+        "IPAddress": "192.168.50.10",
+        "VLAN": 220,
+        "DhcpEnabled": false
+      }
+    ],
+    "LastBootTime": "2026-03-01T04:12:33",
+    "LastPatched": "2026-03-15T22:30:00",
+    "PatchWindow": "Sunday 02:00-04:00"
+  },
+  {
+    "ServerName": "APP-PROD-01",
+    "OperatingSystem": "Windows Server 2022",
+    "Domain": "corp.contoso.com",
+    "SerialNumber": "VMW-4221-8848",
+    "IsVirtual": true,
+    "Tags": [
+      "App",
+      "Critical",
+      "Finance",
+      "Tier1"
+    ],
+    "NetworkAdapters": [
+      {
+        "Name": "Ethernet0",
+        "MacAddress": "00-50-56-A1-B2-C5",
+        "IPAddress": "10.42.18.17",
+        "VLAN": 120,
+        "DhcpEnabled": false
+      },
+      {
+        "Name": "Ethernet1",
+        "MacAddress": "00-50-56-A1-B2-C6",
+        "IPAddress": "192.168.50.22",
+        "VLAN": 220,
+        "DhcpEnabled": false
+      }
+    ],
+    "LastBootTime": "2026-03-01T04:12:33",
+    "LastPatched": "2026-03-15T22:30:00",
+    "PatchWindow": "Sunday 02:00-04:00"
+  }
+]
