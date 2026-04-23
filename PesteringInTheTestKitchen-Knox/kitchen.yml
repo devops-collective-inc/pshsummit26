@@ -1,0 +1,64 @@
+---
+provisioner:
+  name: shell
+  # Specify the files to upload to the kitchen.
+  uploads:
+    "kitchen": "c:/kitchen"
+    # Extra directories copy as directories.
+    "setupScripts": "c:/kitchen"
+    "packages": "c:/kitchen"
+    "sources": "c:/kitchen"
+  root_path: "c:/kitchen/setupScripts"
+
+verifier:
+  name: pester
+  test_folder: ./tests/integration
+  # We need to disabled this removal, otherwise the one we want to use will be removed.
+  remove_builtin_pester: false
+  remove_builtin_powershellget: false
+  skip_pester_install: true
+  pester_configuration:
+    Run:
+      SkipRemainingOnFailure: 'None'
+      PassThru: true
+      Throw: true # If we don't throw, failures are sometimes missed.
+    TestResult:
+      Enabled: true
+      TestSuiteName: ""
+    Output:
+      Verbosity: Detailed # We must set it explicitly, otherwise we sometimes get no output
+    Should:
+      ErrorAction: Continue
+  downloads:
+    "PesterTestResults.xml": testresults/%{instance_name}/TestResults.xml
+
+suites:
+  - name: chocolatey
+    provisioner:
+      script: 'chocolatey.cmd' # 2016 only runs a cmd or batch file. 2019+ does ps1
+
+driver:
+  name: vagrant
+  boot_timeout: 1200
+  customize:
+    maxmemory: 16384
+    cpus: 4
+  provider: hyperv
+
+platforms:
+  - name: windows-11
+    driver:
+      box: gusztavvargadr/windows-11
+
+  # The following boxes do not exist outside of Chocolatey infrastructure. You will not be able to use them.
+  - name: windows-2016
+    driver:
+      box: chocolatey/sqlserver2016
+
+  - name: windows-2019
+    driver:
+      box: chocolatey/sqlserver2019
+
+  - name: windows-2022
+    driver:
+      box: chocolatey/sqlserver2022
