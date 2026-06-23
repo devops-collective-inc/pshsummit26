@@ -1,0 +1,24 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "D&D Character",
+    "type": "object",
+    "properties": {
+        "name":     { "type": "string", "minLength": 2 },
+        "class":    { "type": "string", "enum": ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"] },
+        "level":    { "type": "integer", "minimum": 1, "maximum": 20 },
+        "race":     { "type": "string" },
+        "stats": {
+            "type": "object",
+            "properties": {
+                "strength":     { "type": "integer", "minimum": 1, "maximum": 30 },
+                "dexterity":    { "type": "integer", "minimum": 1, "maximum": 30 },
+                "constitution": { "type": "integer", "minimum": 1, "maximum": 30 },
+                "intelligence": { "type": "integer", "minimum": 1, "maximum": 30 },
+                "wisdom":       { "type": "integer", "minimum": 1, "maximum": 30 },
+                "charisma":     { "type": "integer", "minimum": 1, "maximum": 30 }
+            },
+            "required": ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"]
+        }
+    },
+    "required": ["name", "class", "level", "race", "stats"]
+}
